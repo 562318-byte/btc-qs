@@ -1,1 +1,22 @@
+//@version=5
+indicator("BTC Quant Starter", overlay=true)
+
+// Inputs
+length = input.int(20)
+threshold = input.float(1.5)
+
+// Logic: volatility-based momentum
+ma = ta.sma(close, length)
+vol = ta.stdev(close, length)
+
+bull = close > ma + threshold * vol
+bear = close < ma - threshold * vol
+
+plot(ma, "MA", color=color.orange)
+
+plotshape(bull, style=shape.labelup, color=color.new(color.green, 0), text="BUY")
+plotshape(bear, style=shape.labeldown, color=color.new(color.red, 0), text="SELL")
+
+alertcondition(bull, title="Buy Signal", message="BUY")
+alertcondition(bear, title="Sell Signal", message="SELL")
 
