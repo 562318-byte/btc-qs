@@ -1,1 +1,5 @@
+{
+  "secret": "CHANGE_ME_SECRET_KEY",
+  "port": 8080
+}
 
